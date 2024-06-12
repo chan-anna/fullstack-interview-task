@@ -43,4 +43,15 @@ const mapCsvRows = (investments, companies) => {
   }
   return records;
 };
-module.exports = { mapHoldingsToCompany, mapCsvRows };
+
+const generateCsv = (investments, companies) => {
+  const headings = "|User|First Name|Last Name|Date|Holding|Value|\n";
+  const rows = mapCsvRows(investments, companies);
+  formattedRows = rows.map(
+    (row) =>
+      `|${row.userId}|${row.firstName}|${row.lastName}|${row.date}|${row.holding}|${row.value}|`
+  );
+  return headings + formattedRows.join("\n");
+};
+
+module.exports = { mapHoldingsToCompany, mapCsvRows, generateCsv };
