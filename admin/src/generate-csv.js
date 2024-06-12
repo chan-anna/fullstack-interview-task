@@ -1,11 +1,11 @@
-const mapHoldingsToCompany = (holding, investmentTotal, companies) => {
+const formatHoldings = (holdings, investmentTotal, companies) => {
   let individualHoldings = [];
   const idToCompanyName = new Map();
   companies.map((company) => {
     idToCompanyName.set(company.id, company.name);
   });
 
-  for (const company of holding) {
+  for (const company of holdings) {
     const id = company.id;
     const investmentPercentage = company.investmentPercentage;
     const name = idToCompanyName.get(id);
@@ -24,11 +24,7 @@ const mapCsvRows = (investments, companies) => {
     const { userId, firstName, lastName, investmentTotal, date, holdings } =
       investment;
 
-    const holdingData = mapHoldingsToCompany(
-      holdings,
-      investmentTotal,
-      companies
-    );
+    const holdingData = formatHoldings(holdings, investmentTotal, companies);
 
     holdingData.forEach((holding) => {
       records.push({
@@ -54,4 +50,4 @@ const generateCsv = (investments, companies) => {
   return headings + formattedRows.join("\n");
 };
 
-module.exports = { mapHoldingsToCompany, mapCsvRows, generateCsv };
+module.exports = { formatHoldings, mapCsvRows, generateCsv };

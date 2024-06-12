@@ -1,8 +1,4 @@
-const {
-  mapCsvRows,
-  mapHoldingsToCompany,
-  generateCsv,
-} = require("./generate-csv");
+const { mapCsvRows, formatHoldings, generateCsv } = require("./generate-csv");
 
 const data = {
   investmentTotal: 20000,
@@ -63,7 +59,7 @@ const companies = [
 describe("generate cvs", () => {
   it("should correctly map holding data", () => {
     expect(
-      mapHoldingsToCompany(data.holdings, data.investmentTotal, companies)
+      formatHoldings(data.holdings, data.investmentTotal, companies)
     ).toEqual([
       { name: "The Big Investment Company", value: 10000 },
       { name: "The Small Investment Company", value: 10000 },
