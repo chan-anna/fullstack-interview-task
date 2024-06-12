@@ -105,9 +105,10 @@ npm run test
   2. How would you make this solution scale to millions of records?
 
      Use streams to chunk process and write data in chunks
+
      Caching
 
-  3. What else would you have liked to improve given more time?
+  4. What else would you have liked to improve given more time?
 
      Seperate business logic by adding in route and controllers
 
